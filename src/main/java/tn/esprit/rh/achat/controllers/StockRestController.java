@@ -5,6 +5,7 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.rh.achat.entities.Stock;
+import tn.esprit.rh.achat.entities.StockDTO;
 import tn.esprit.rh.achat.services.IStockService;
 
 import java.util.List;
@@ -22,8 +23,7 @@ public class StockRestController {
 	@GetMapping("/retrieve-all-stocks")
 	@ResponseBody
 	public List<Stock> getStocks() {
-		List<Stock> list = stockService.retrieveAllStocks();
-		return list;
+		return stockService.retrieveAllStocks();
 	}
 
 	// http://localhost:8089/SpringMVC/stock/retrieve-stock/8
@@ -36,9 +36,9 @@ public class StockRestController {
 	// http://localhost:8089/SpringMVC/stock/add-stock
 	@PostMapping("/add-stock")
 	@ResponseBody
-	public Stock addStock(@RequestBody Stock s) {
-		Stock stock = stockService.addStock(s);
-		return stock;
+	public Stock addStock(@RequestBody StockDTO sDTO) {
+		Stock s = new Stock(sDTO);
+		return stockService.addStock(s);
 	}
 
 	// http://localhost:8089/SpringMVC/stock/remove-stock/{stock-id}
@@ -51,8 +51,9 @@ public class StockRestController {
 	// http://localhost:8089/SpringMVC/stock/modify-stock
 	@PutMapping("/modify-stock")
 	@ResponseBody
-	public Stock modifyStock(@RequestBody Stock stock) {
-		return stockService.updateStock(stock);
+	public Stock modifyStock(@RequestBody StockDTO sDTO) {
+		Stock s = new Stock(sDTO);
+		return stockService.updateStock(s);
 	}
 
 	/*

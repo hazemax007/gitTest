@@ -32,11 +32,10 @@ public class FactureServiceImpl implements IFactureService {
 	
 	@Override
 	public List<Facture> retrieveAllFactures() {
-		List<Facture> factures = (List<Facture>) factureRepository.findAll();
-		for (Facture facture : factures) {
+		return factureRepository.findAll();
+		//for (Facture facture : factures) {
 			//log.info(" facture : " + facture);
-		}
-		return factures;
+		//}
 	}
 
 	
@@ -86,9 +85,8 @@ public class FactureServiceImpl implements IFactureService {
 	@Override
 	public Facture retrieveFacture(Long factureId) {
 
-		Facture facture = factureRepository.findById(factureId).orElse(null);
+		return factureRepository.findById(factureId).orElse(null);
 		//log.info("facture :" + facture);
-		return facture;
 	}
 
 	@Override
@@ -109,8 +107,7 @@ public class FactureServiceImpl implements IFactureService {
 	public float pourcentageRecouvrement(Date startDate, Date endDate) {
 		float totalFacturesEntreDeuxDates = factureRepository.getTotalFacturesEntreDeuxDates(startDate,endDate);
 		float totalRecouvrementEntreDeuxDates =reglementService.getChiffreAffaireEntreDeuxDate(startDate,endDate);
-		float pourcentage=(totalRecouvrementEntreDeuxDates/totalFacturesEntreDeuxDates)*100;
-		return pourcentage;
+		return (totalRecouvrementEntreDeuxDates/totalFacturesEntreDeuxDates)*100;
 	}
 	
 

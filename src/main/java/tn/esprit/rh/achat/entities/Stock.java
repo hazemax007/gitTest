@@ -9,7 +9,18 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Stock implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -28,9 +39,7 @@ public class Stock implements Serializable {
 		this.qte = qte;
 		this.qteMin = qteMin;
 	}
-	public Stock() {
-		super();
-	}
+	
 	public Stock(String libelleStock, Integer qte, Integer qteMin, Set<Produit> produits) {
 		super();
 		this.libelleStock = libelleStock;
@@ -38,44 +47,20 @@ public class Stock implements Serializable {
 		this.qteMin = qteMin;
 		this.produits = produits;
 	}
-	public Stock(Long idStock, String libelleStock, Integer qte, Integer qteMin, Set<Produit> produits) {
-		super();
-		this.idStock = idStock;
-		this.libelleStock = libelleStock;
-		this.qte = qte;
-		this.qteMin = qteMin;
-		this.produits = produits;
+	
+	public Stock(StockDTO sDTO) {
+		this.libelleStock = sDTO.getLibelleStock();
+		this.qte = sDTO.getQte();
+		this.qteMin = sDTO.getQteMin();
 	}
-	public Long getIdStock() {
-		return idStock;
+	
+	public Stock(StockDTO1 sDTO1) {
+		this.libelleStock = sDTO1.getLibelleStock();
+		this.qte = sDTO1.getQte();
+		this.qteMin = sDTO1.getQteMin();
+		this.produits = sDTO1.getProduits();
 	}
-	public void setIdStock(Long idStock) {
-		this.idStock = idStock;
-	}
-	public String getLibelleStock() {
-		return libelleStock;
-	}
-	public void setLibelleStock(String libelleStock) {
-		this.libelleStock = libelleStock;
-	}
-	public Integer getQte() {
-		return qte;
-	}
-	public void setQte(Integer qte) {
-		this.qte = qte;
-	}
-	public Integer getQteMin() {
-		return qteMin;
-	}
-	public void setQteMin(Integer qteMin) {
-		this.qteMin = qteMin;
-	}
-	public Set<Produit> getProduits() {
-		return produits;
-	}
-	public void setProduits(Set<Produit> produits) {
-		this.produits = produits;
-	}
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

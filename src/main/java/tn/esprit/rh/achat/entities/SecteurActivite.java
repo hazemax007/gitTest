@@ -9,7 +9,18 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class SecteurActivite implements Serializable{
 	/**
 	 * 
@@ -23,49 +34,17 @@ public class SecteurActivite implements Serializable{
 	@ManyToMany(mappedBy="secteurActivites")
 	@JsonIgnore
 	private Set<Fournisseur> fournisseurs;
-	public SecteurActivite() {
-		super();
-	}
+	
 	public SecteurActivite(String codeSecteurActivite, String libelleSecteurActivite, Set<Fournisseur> fournisseurs) {
 		super();
 		this.codeSecteurActivite = codeSecteurActivite;
 		this.libelleSecteurActivite = libelleSecteurActivite;
 		this.fournisseurs = fournisseurs;
 	}
-	public SecteurActivite(Long idSecteurActivite, String codeSecteurActivite, String libelleSecteurActivite,
-			Set<Fournisseur> fournisseurs) {
-		super();
-		this.idSecteurActivite = idSecteurActivite;
-		this.codeSecteurActivite = codeSecteurActivite;
-		this.libelleSecteurActivite = libelleSecteurActivite;
-		this.fournisseurs = fournisseurs;
-	}
-	public Long getIdSecteurActivite() {
-		return idSecteurActivite;
-	}
-	public void setIdSecteurActivite(Long idSecteurActivite) {
-		this.idSecteurActivite = idSecteurActivite;
-	}
-	public String getCodeSecteurActivite() {
-		return codeSecteurActivite;
-	}
-	public void setCodeSecteurActivite(String codeSecteurActivite) {
-		this.codeSecteurActivite = codeSecteurActivite;
-	}
-	public String getLibelleSecteurActivite() {
-		return libelleSecteurActivite;
-	}
-	public void setLibelleSecteurActivite(String libelleSecteurActivite) {
-		this.libelleSecteurActivite = libelleSecteurActivite;
-	}
-	public Set<Fournisseur> getFournisseurs() {
-		return fournisseurs;
-	}
-	public void setFournisseurs(Set<Fournisseur> fournisseurs) {
-		this.fournisseurs = fournisseurs;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	
+	public SecteurActivite(SecteurActiviteDTO saDTO) {
+		this.codeSecteurActivite = saDTO.getCodeSecteurActivite();
+		this.libelleSecteurActivite = saDTO.getLibelleSecteurActivite();
+		this.fournisseurs = saDTO.getFournisseurs();
+	}
 }

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.rh.achat.entities.Facture;
+import tn.esprit.rh.achat.entities.FactureDTO;
 import tn.esprit.rh.achat.services.IFactureService;
 
 import java.util.Date;
@@ -24,8 +25,7 @@ public class FactureRestController {
     @GetMapping("/retrieve-all-factures")
     @ResponseBody
     public List<Facture> getFactures() {
-        List<Facture> list = factureService.retrieveAllFactures();
-        return list;
+        return factureService.retrieveAllFactures();
     }
 
     // http://localhost:8089/SpringMVC/facture/retrieve-facture/8
@@ -38,9 +38,9 @@ public class FactureRestController {
     // http://localhost:8089/SpringMVC/facture/add-facture/{fournisseur-id}
     @PostMapping("/add-facture")
     @ResponseBody
-    public Facture addFacture(@RequestBody Facture f) {
-        Facture facture = factureService.addFacture(f);
-        return facture;
+    public Facture addFacture(@RequestBody FactureDTO fDTO) {
+    	Facture f = new Facture(fDTO);
+        return factureService.addFacture(f);
     }
 
     /*

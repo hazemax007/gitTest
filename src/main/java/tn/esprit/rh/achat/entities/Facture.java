@@ -13,7 +13,18 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Facture implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -35,9 +46,7 @@ public class Facture implements Serializable {
     @OneToMany(mappedBy="facture")
     @JsonIgnore
     private Set<Reglement> reglements;
-	public Facture() {
-		super();
-	}
+	
 	public Facture(float montantRemise, float montantFacture, Date dateCreationFacture,
 			Date dateDerniereModificationFacture, Boolean archivee, Set<DetailFacture> detailsFacture,
 			Fournisseur fournisseur, Set<Reglement> reglements) {
@@ -51,77 +60,15 @@ public class Facture implements Serializable {
 		this.fournisseur = fournisseur;
 		this.reglements = reglements;
 	}
-	public Facture(Long idFacture, float montantRemise, float montantFacture, Date dateCreationFacture,
-			Date dateDerniereModificationFacture, Boolean archivee, Set<DetailFacture> detailsFacture,
-			Fournisseur fournisseur, Set<Reglement> reglements) {
-		super();
-		this.idFacture = idFacture;
-		this.montantRemise = montantRemise;
-		this.montantFacture = montantFacture;
-		this.dateCreationFacture = dateCreationFacture;
-		this.dateDerniereModificationFacture = dateDerniereModificationFacture;
-		this.archivee = archivee;
-		this.detailsFacture = detailsFacture;
-		this.fournisseur = fournisseur;
-		this.reglements = reglements;
+
+	public Facture(FactureDTO fDTO) {
+		this.montantRemise = fDTO.getMontantRemise();
+		this.montantFacture = fDTO.getMontantFacture();
+		this.dateCreationFacture = fDTO.getDateCreationFacture();
+		this.archivee = fDTO.getArchivee();
+		this.detailsFacture = fDTO.getDetailsFacture();
+		this.fournisseur = fDTO.getFournisseur();
+		this.reglements = fDTO.getReglements();
 	}
-	public Long getIdFacture() {
-		return idFacture;
-	}
-	public void setIdFacture(Long idFacture) {
-		this.idFacture = idFacture;
-	}
-	public float getMontantRemise() {
-		return montantRemise;
-	}
-	public void setMontantRemise(float montantRemise) {
-		this.montantRemise = montantRemise;
-	}
-	public float getMontantFacture() {
-		return montantFacture;
-	}
-	public void setMontantFacture(float montantFacture) {
-		this.montantFacture = montantFacture;
-	}
-	public Date getDateCreationFacture() {
-		return dateCreationFacture;
-	}
-	public void setDateCreationFacture(Date dateCreationFacture) {
-		this.dateCreationFacture = dateCreationFacture;
-	}
-	public Date getDateDerniereModificationFacture() {
-		return dateDerniereModificationFacture;
-	}
-	public void setDateDerniereModificationFacture(Date dateDerniereModificationFacture) {
-		this.dateDerniereModificationFacture = dateDerniereModificationFacture;
-	}
-	public Boolean getArchivee() {
-		return archivee;
-	}
-	public void setArchivee(Boolean archivee) {
-		this.archivee = archivee;
-	}
-	public Set<DetailFacture> getDetailsFacture() {
-		return detailsFacture;
-	}
-	public void setDetailsFacture(Set<DetailFacture> detailsFacture) {
-		this.detailsFacture = detailsFacture;
-	}
-	public Fournisseur getFournisseur() {
-		return fournisseur;
-	}
-	public void setFournisseur(Fournisseur fournisseur) {
-		this.fournisseur = fournisseur;
-	}
-	public Set<Reglement> getReglements() {
-		return reglements;
-	}
-	public void setReglements(Set<Reglement> reglements) {
-		this.reglements = reglements;
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-    
 	
 }

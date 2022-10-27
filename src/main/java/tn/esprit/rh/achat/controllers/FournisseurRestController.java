@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.rh.achat.entities.Fournisseur;
+import tn.esprit.rh.achat.entities.FournisseurDTO;
 import tn.esprit.rh.achat.services.IFournisseurService;
 
 import java.util.List;
@@ -21,8 +22,7 @@ public class FournisseurRestController {
 	@GetMapping("/retrieve-all-fournisseurs")
 	@ResponseBody
 	public List<Fournisseur> getFournisseurs() {
-		List<Fournisseur> fournisseurs = fournisseurService.retrieveAllFournisseurs();
-		return fournisseurs;
+		return fournisseurService.retrieveAllFournisseurs();
 	}
 
 	// http://localhost:8089/SpringMVC/fournisseur/retrieve-fournisseur/8
@@ -35,9 +35,9 @@ public class FournisseurRestController {
 	// http://localhost:8089/SpringMVC/fournisseur/add-fournisseur
 	@PostMapping("/add-fournisseur")
 	@ResponseBody
-	public Fournisseur addFournisseur(@RequestBody Fournisseur f) {
-		Fournisseur fournisseur = fournisseurService.addFournisseur(f);
-		return fournisseur;
+	public Fournisseur addFournisseur(@RequestBody FournisseurDTO fDTO) {
+		Fournisseur f = new Fournisseur(fDTO);
+		return fournisseurService.addFournisseur(f);
 	}
 
 	// http://localhost:8089/SpringMVC/fournisseur/remove-fournisseur/{fournisseur-id}
@@ -50,8 +50,9 @@ public class FournisseurRestController {
 	// http://localhost:8089/SpringMVC/fournisseur/modify-fournisseur
 	@PutMapping("/modify-fournisseur")
 	@ResponseBody
-	public Fournisseur modifyFournisseur(@RequestBody Fournisseur fournisseur) {
-		return fournisseurService.updateFournisseur(fournisseur);
+	public Fournisseur modifyFournisseur(@RequestBody FournisseurDTO fDTO) {
+		Fournisseur f = new Fournisseur(fDTO);
+		return fournisseurService.updateFournisseur(f);
 	}
 
 	// http://localhost:8089/SpringMVC/fournisseur/assignSecteurActiviteToFournisseur/1/5
