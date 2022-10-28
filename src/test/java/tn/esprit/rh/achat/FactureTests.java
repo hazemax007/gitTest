@@ -2,7 +2,6 @@ package tn.esprit.rh.achat;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -17,22 +16,22 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import tn.esprit.rh.achat.entities.Facture;
 import tn.esprit.rh.achat.repositories.FactureRepository;
 import tn.esprit.rh.achat.services.FactureServiceImpl;
 
-@ExtendWith(SpringExtension.class)
+@ExtendWith(MockitoExtension.class)
 @SpringBootTest
 public class FactureTests {
 	
-	@Mock
+	@MockBean
 	FactureRepository factureRepository;
-	@InjectMocks
+	@Autowired
 	FactureServiceImpl factureService;
 	
 	@Test
