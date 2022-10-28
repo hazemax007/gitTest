@@ -29,6 +29,7 @@ public class StockServiceImpl implements IStockService {
 		//log.info("out of method retrieveAllStocks");
 		// récuperer la date à l'instant t2
 		// temps execution = t2 - t1
+		
 	}
 
 	@Override
@@ -71,7 +72,7 @@ public class StockServiceImpl implements IStockService {
 		String msgDate = sdf.format(now);
 		String finalMessage = "";
 		String newLine = System.getProperty("line.separator");
-		List<Stock> stocksEnRouge = stockRepository.retrieveStatusStock();
+		List<Stock> stocksEnRouge = (List<Stock>) stockRepository.retrieveStatusStock();
 		for (int i = 0; i < stocksEnRouge.size(); i++) {
 			finalMessage = newLine + finalMessage + msgDate + newLine + ": le stock "
 					+ stocksEnRouge.get(i).getLibelleStock() + " a une quantité de " + stocksEnRouge.get(i).getQte()
