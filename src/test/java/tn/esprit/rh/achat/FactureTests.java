@@ -29,9 +29,9 @@ import tn.esprit.rh.achat.services.FactureServiceImpl;
 @SpringBootTest
 public class FactureTests {
 	
-	@MockBean
+	@Mock
 	FactureRepository factureRepository;
-	@Autowired
+	@InjectMocks
 	FactureServiceImpl factureService;
 	
 	@Test
