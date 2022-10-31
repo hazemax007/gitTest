@@ -17,16 +17,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import tn.esprit.rh.achat.entities.Facture;
 import tn.esprit.rh.achat.repositories.FactureRepository;
 import tn.esprit.rh.achat.services.FactureServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest
 public class FactureTests {
 	
 	@Mock
