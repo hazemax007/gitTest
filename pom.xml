@@ -69,13 +69,9 @@
 		</dependency>
 	</dependencies>
 	<distributionManagement>
-    <snapshotRepository>
-      <id>deploymentrepo</id>
-      <url>http://192.168.33.10:8081/repository/maven-snapshots/</url>
-    </snapshotRepository>
 	<repository>
 	  <id>deploymentrepo</id>
-      <url>http://192.168.33.10:8081/repository/maven-releases/</url>
+      <url>http://192.168.33.10:8081/repository/achat/</url>
     </repository>
   
   </distributionManagement>
