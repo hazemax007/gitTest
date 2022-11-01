@@ -70,8 +70,8 @@
 	</dependencies>
 	<distributionManagement>
 	   <snapshotRepository>
-	      <id>nexus-snapshots</id>
-	      <url>http://192.168.33.10:8081/repository/maven-snapshots/</url>
+	      <id>deploymentrepo</id>
+	      <url>http://192.168.33.10:8081/repository/achat/</url>
 	   </snapshotRepository>
 	</distributionManagement>
 	<build>
